@@ -7,12 +7,11 @@ def get_all(db: Session):
     return blogs
 
 def create(request: schemas.Blog,db: Session,current_user):
-    user=db.query(models.User).filter(models.User.email==current_user.username).first()
+    user=db.query(models.User).filter(models.User.email==current_user.email).first()
     new_blog = models.Blog(title=request.title, body=request.body,user_id=user.id)
     db.add(new_blog)
     db.commit()
     db.refresh(new_blog)
-    # print(current_user,"\n",type(current_user))
     return new_blog
 
 def destroy(id:int,db: Session):
@@ -39,6 +38,4 @@ def show(id: int, db: Session):
     if not one_blog:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
             detail=f'Blog with id {id} does not exist.')
-        # response.status_code = status.HTTP_404_NOT_FOUND
-        # return {'detail':f'Blog with id {id} does not exist.'}
     return one_blog

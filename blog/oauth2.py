@@ -12,6 +12,3 @@ async def get_current_user(data: str = Depends(oauth2_scheme)):
         headers={"WWW-Authenticate": "Bearer"},
     )
     return token.verify_token(data,credentials_exception)
-
-async def get_current_active_user(current_user: schemas.User = Depends(get_current_user)):
-    return current_user

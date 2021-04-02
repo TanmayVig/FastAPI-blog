@@ -22,8 +22,8 @@ async def show(id:int,db: Session = Depends(get_db),current_user: schemas.User=D
     return blog.show(id, db)
 
 @router.post("",status_code=status.HTTP_201_CREATED)
-async def create(request: schemas.Blog,db: Session = Depends(get_db),current_user: schemas.User=Depends(get_current_user),active_user: OAuth2PasswordRequestForm=Depends()):
-    return blog.create(request,db,active_user)
+async def create(request: schemas.Blog,db: Session = Depends(get_db),current_user: schemas.User=Depends(get_current_user)):
+    return blog.create(request,db,current_user)
 
 @router.put('/{id}',status_code=status.HTTP_202_ACCEPTED)
 async def update(id, request: schemas.Blog,db: Session = Depends(get_db),current_user: schemas.User=Depends(get_current_user)):
