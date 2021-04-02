@@ -1,4 +1,3 @@
-from sys import prefix
 from blog import database, schemas
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
