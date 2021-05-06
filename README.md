@@ -1,2 +1,2 @@
 # FastAPI-blog
-Backend for Blog site using FastAPI
+A backend for a blog site made using FastAPI.
